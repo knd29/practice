@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{hello}}</h1>
+
+      <p>リストをループ</p>
+      <ul class="ul">
+        <li v-for="item in list">{{item}}</li>
+      </ul>
+
+      <button class="btn" v-on:click="click">アラートを表示</button>
+
+      <p>{{message}}</p>
+      <input class="input" type="text" v-model="message" />
+
+      <button class="btn btn--show" v-on:click="show=!show">切り替え</button>
+      <p v-if="show">トランジション無し{{hello}}</p>
+      <transition>
+        <p v-if="show">トランジション有り{{hello}}</p>
+      </transition>
+
+      <p>カウント {{ count }}</p>
+      <div class="flex">
+        <button class="btn btn--plus" v-on:click="increment">カウントアップ</button>
+        <button class="btn btn--minus" v-on:click="decrement">カウントダウン</button>
+        <button class="btn" v-on:click="reset">リセット</button>
+      </div><!-- /.flex -->
+
+
+      <p :class="{'color-red': colorRed === true, 'text--s': textS === true}">テキスト</p>
+      <div class="flex">
+        <button class="btn" v-on:click="colorRed=!colorRed">色スイッチ {{ colorRed }}</button>
+        <button class="btn" v-on:click="textS=!textS">大きさスイッチ {{ textS }}</button>
+      </div><!-- /.flex -->
+
+      <img class="ss" v-bind="item" :width="imgWidth" :height="imgHeight"/>
+      <label>幅: <input class="input" type="number" v-model="imgWidth">(px)</label><br>
+      <label for="">高さ: <input class="input" type="number" v-model="imgHeight">(px)</label>
+      
+    </div>
+    <!-- /#app -->
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
