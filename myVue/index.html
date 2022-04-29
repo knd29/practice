@@ -41,9 +41,9 @@
         <button class="btn" v-on:click="textS=!textS">大きさスイッチ {{ textS }}</button>
       </div><!-- /.flex -->
 
-      <img class="ss" v-bind="item" :width="width" :height="height"/>
-      <label>幅: <input class="input" type="number" v-model="width"></label><br>
-      <label for="">高さ: <input class="input" type="number" v-model="height"></label>
+      <img class="ss" v-bind="item" :width="imgWidth" :height="imgHeight"/>
+      <label>幅: <input class="input" type="number" v-model="imgWidth">(px)</label><br>
+      <label for="">高さ: <input class="input" type="number" v-model="imgHeight">(px)</label>
       
     </div>
     <!-- /#app -->

@@ -12,11 +12,9 @@ var app = new Vue({
     item: {
       src: 'img/img1.png',
       alt: 'スクリーンショット',
-      // width: 100,
-      // height: 100
     },
-    width: 100,
-    height: 100
+    imgWidth: 100,
+    imgHeight: 100
   },
 
   created: function () {
