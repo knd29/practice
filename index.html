@@ -19,12 +19,12 @@
       <button class="btn" v-on:click="click">アラートを表示</button>
 
       <p>{{message}}</p>
-      <input class="input" type="text" v-model="message" />
+      <input type="text" v-model="message" />
 
       <button class="btn btn--show" v-on:click="show=!show">切り替え</button>
-      <p v-if="show">トランジション無し{{hello}}</p>
+      <p v-if="show">トランジション無し</p>
       <transition>
-        <p v-if="show">トランジション有り{{hello}}</p>
+        <p v-if="show">トランジション有り</p>
       </transition>
 
       <p>カウント {{ count }}</p>
@@ -32,19 +32,25 @@
         <button class="btn btn--plus" v-on:click="increment">カウントアップ</button>
         <button class="btn btn--minus" v-on:click="decrement">カウントダウン</button>
         <button class="btn" v-on:click="reset">リセット</button>
-      </div><!-- /.flex -->
-
+      </div>
+      <!-- /.flex -->
 
       <p :class="{'color-red': colorRed === true, 'text--s': textS === true}">テキスト</p>
       <div class="flex">
         <button class="btn" v-on:click="colorRed=!colorRed">色スイッチ {{ colorRed }}</button>
         <button class="btn" v-on:click="textS=!textS">大きさスイッチ {{ textS }}</button>
-      </div><!-- /.flex -->
+      </div>
+      <!-- /.flex -->
 
-      <img class="ss" v-bind="item" :width="imgWidth" :height="imgHeight"/>
-      <label>幅: <input class="input" type="number" v-model="imgWidth">(px)</label><br>
-      <label for="">高さ: <input class="input" type="number" v-model="imgHeight">(px)</label>
-      
+      <div class="img-outer">
+        <img class="ss" v-bind="item" :width="imgWidth" :height="imgHeight" />
+        <div class="slider">
+          <label>幅: <input type="range" min="250" max="1000" v-model="imgWidth" />{{ imgWidth }}(px) </label><br />
+          <label>高さ: <input type="range" min="150" max="1000" v-model="imgHeight" />{{ imgHeight }}(px) </label>
+          <button class="btn btn--default" v-on:click="defaultSize">デフォルト</button>
+        </div>
+        <!-- /.slider -->
+      </div>
     </div>
     <!-- /#app -->
 

@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-.flex {
-  display: flex;
-  gap: 10px;
-}
-
 ul {
   margin-top: 0;
 }
@@ -15,6 +10,15 @@ p {
 
 p + p + p {
   margin-top: 20px;
+}
+
+label {
+  color: #fff;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
 }
 
 .color-red {
@@ -35,6 +39,11 @@ p + p + p {
 .btn:hover {
   cursor: pointer;
   opacity: 0.5;
+}
+
+.btn--default:hover {
+  background-color: #fff;
+  opacity: 1;
 }
 
 .btn--show {
@@ -60,6 +69,18 @@ p + p + p {
 }
 
 .ss {
-  display: block;
-  margin-top: 20px;
+  object-fit: cover;
+}
+
+.img-outer {
+  position: relative;
+  max-width: 1000px;
+  max-width: 1000px;
+  overflow: hidden;
+}
+
+.slider {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }

@@ -10,11 +10,11 @@ var app = new Vue({
     colorRed: true,
     textS: false,
     item: {
-      src: 'img/img1.png',
-      alt: 'スクリーンショット',
+      src: "img/img1.png",
+      alt: "スクリーンショット",
     },
-    imgWidth: 100,
-    imgHeight: 100
+    imgWidth: 300,
+    imgHeight: 300,
   },
 
   created: function () {
@@ -36,6 +36,10 @@ var app = new Vue({
 
     reset: function () {
       this.count = 0;
+    },
+
+    defaultSize: function () {
+      (this.imgWidth = 300), (this.imgHeight = 300);
     },
   },
 });
