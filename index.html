@@ -9,17 +9,17 @@
   </head>
   <body>
     <div id="app">
-      <h1>{{hello}}</h1>
+      <h1 ref="hello">{{ hello }}</h1>
 
-      <p>リストをループ</p>
-      <ul class="ul">
-        <li v-for="item in list">{{item}}</li>
-      </ul>
+      <!-- loop -->
+      <section class="sec sec--loop">
+        <h2 class="sec-ttl">v-for</h2>
 
-      <button class="btn" v-on:click="click">アラートを表示</button>
-
-      <p>{{message}}</p>
-      <input type="text" v-model="message" />
+        <h3 class="sub-ttl">リストをループ</h3>
+        <ul>
+          <li v-for="item in list">{{ item }}</li>
+        </ul>
+      </section>
 
       <button class="btn btn--show" v-on:click="show=!show">切り替え</button>
       <p v-if="show">トランジション無し</p>
@@ -27,34 +27,93 @@
         <p v-if="show">トランジション有り</p>
       </transition>
 
-      <p>カウント {{ count }}</p>
-      <div class="flex">
-        <button class="btn btn--plus" v-on:click="increment">カウントアップ</button>
-        <button class="btn btn--minus" v-on:click="decrement">カウントダウン</button>
-        <button class="btn" v-on:click="reset">リセット</button>
-      </div>
-      <!-- /.flex -->
+      <!-- v-on -->
+      <section class="sec sec--v-on">
+        <h2 class="sec-ttl">v-on:click</h2>
 
-      <p :class="{'color-red': colorRed === true, 'text--s': textS === true}">テキスト</p>
-      <div class="flex">
-        <button class="btn" v-on:click="colorRed=!colorRed">色スイッチ {{ colorRed }}</button>
-        <button class="btn" v-on:click="textS=!textS">大きさスイッチ {{ textS }}</button>
-      </div>
-      <!-- /.flex -->
+        <h3 class="sub-ttl">アラート</h3>
+        <button class="btn" v-on:click="click">アラートを表示</button>
 
-      <div class="img-outer">
-        <img class="ss" v-bind="item" :width="imgWidth" :height="imgHeight" />
-        <div class="slider">
-          <label>幅: <input type="range" min="250" max="1000" v-model="imgWidth" />{{ imgWidth }}(px) </label><br />
-          <label>高さ: <input type="range" min="150" max="1000" v-model="imgHeight" />{{ imgHeight }}(px) </label>
-          <button class="btn btn--default" v-on:click="defaultSize">デフォルト</button>
+        <h3 class="sub-ttl">カウンター</h3>
+        <p>{{ count }}</p>
+        <div class="flex">
+          <button class="btn btn--plus" v-on:click="increment">カウントアップ</button>
+          <button class="btn btn--minus" v-on:click="decrement">カウントダウン</button>
+          <button class="btn btn--reset" v-on:click="reset">リセット</button>
         </div>
-        <!-- /.slider -->
-      </div>
+
+        <h3 class="sub-ttl">クラス切り替え</h3>
+        <p :class="{'color-red': colorRed === true, 'text--s': textS === true}">テキスト</p>
+        <div class="flex">
+          <button class="btn" v-on:click="colorRed=!colorRed">色スイッチ {{ colorRed }}</button>
+          <button class="btn" v-on:click="textS=!textS">大きさスイッチ {{ textS }}</button>
+        </div>
+      </section>
+
+      <!-- v-bind, v-model -->
+      <section class="sec sec--img">
+        <h2 class="sec-ttl">v-bind, v-model</h2>
+
+        <h3 class="sub-ttl">入力の同期 (v-model)</h3>
+        <p>{{ message }}</p>
+        <input type="text" v-model="message" />
+
+        <h3 class="sub-ttl">画像のサイズ変更 (v-model + v-bind)</h3>
+        <div class="img-outer">
+          <img class="ss" v-bind="item" :width="imgWidth" :height="imgHeight" />
+          <div class="slider">
+            <label>幅: <input type="range" min="250" max="1000" v-model="imgWidth" />{{ imgWidth }}(px) </label><br />
+            <label>高さ: <input type="range" min="150" max="1000" v-model="imgHeight" />{{ imgHeight }}(px) </label>
+            <button class="btn btn--default" v-on:click="defaultSize">デフォルト</button>
+          </div>
+          <!-- /.slider -->
+        </div>
+        <!-- /.img-outer -->
+      </section>
+
+      <!-- v-if -->
+      <section class="sec sec--monster">
+        <h2 class="sec-ttl">v-if</h2>
+
+        <h3 class="sub-ttl">モンスター一覧</h3>
+        <ul>
+          <li v-for="monster in monsters" :key="monster.id" :class="{yabai: monster.hp >= 10000, tyotuyoi: monster.hp >= 1000, tuyoi: monster.hp >= 500}">
+            ID: {{ monster.id }} {{ monster.name }} HP: {{ monster.hp }}
+            <span v-if="monster.hp >= 10000">やばい！！！！！</span>
+            <span v-else-if="monster.hp >= 1000">超つよい！！！</span>
+            <span v-else-if="monster.hp >= 500">つよい！</span>
+          </li>
+        </ul>
+  
+        <h3 class="sub-ttl">(HP &lt; 500)モンスター一覧</h3>
+        <ul>
+          <li v-for="monster in monsters" :key="monster.id" v-if="monster.hp < 500">
+            ID: {{ monster.id }} {{ monster.name }} HP: {{ monster.hp }}
+          </li>
+        </ul>
+  
+        <h3 class="sub-ttl">モンスターを追加 / 削除</h3>
+        <div class="flex add-form">
+          <label>名前: <input type="text" v-model="name" /></label>
+          <label>HP: <input type="number" min="1" max="99999" v-model="hp" /></label>
+          <button class="btn btn--add" v-on:click="doAdd">モンスターを追加</button>
+        </div>
+
+        <ul class="monster-list">
+          <li class="flex monster-list__item" v-for="(monster, index) in monsters" :key="monster.id" :class="{yabai: monster.hp >= 10000, tyotuyoi: monster.hp >= 1000, tuyoi: monster.hp >= 500}">
+            ID: {{ monster.id }} {{ monster.name }} HP: {{ monster.hp }}
+            <span v-if="monster.hp >= 10000">やばい！！！！！</span>
+            <span v-else-if="monster.hp >= 1000">超つよい！！！</span>
+            <span v-else-if="monster.hp >= 500">つよい！</span>
+            <button class="btn btn--remove" v-on:click="doRemove(index)">削除</button>
+          </li>
+        </ul>
+      </section>
     </div>
     <!-- /#app -->
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.17.1/dist/axios.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
