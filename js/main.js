@@ -108,17 +108,7 @@ var app = new Vue({
     doRemove: function (index) {
       const flg1 = confirm("削除してもよろしいですか？");
       if (flg1) {
-        const flg2 = confirm("本当によろしいですか？");
-        if (flg2) {
-          const flg3 = confirm(`${this.monsters[index].name}は悲しんでいます。削除しますか？`);
-          if (flg3) {
-            alert(`さようなら！${this.monsters[index].name}!!!`);
-          } else {
-            return;
-          }
-        } else {
-          return;
-        }
+        alert(`さようなら！${this.monsters[index].name}!!!`);
       } else {
         return;
       }
