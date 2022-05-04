@@ -101,7 +101,7 @@
 
         <ul class="monster-list">
           <li class="flex monster-list__item" v-for="(monster, index) in monsters" :key="monster.id" :class="{yabai: monster.hp >= 10000, tyotuyoi: monster.hp >= 1000, tuyoi: monster.hp >= 500}">
-            ID: {{ monster.id }} {{ monster.name }} HP: {{ monster.hp }}
+            ID: {{ monster.id }} {{ monster.name }} HP: {{ monster.hp | localeNum }}
             <span v-if="monster.hp >= 10000">やばい！！！！！</span>
             <span v-else-if="monster.hp >= 1000">超つよい！！！</span>
             <span v-else-if="monster.hp >= 500">つよい！</span>

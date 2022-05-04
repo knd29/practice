@@ -24,6 +24,12 @@ var app = new Vue({
     monsters: [],
   },
 
+  filters: {
+    localeNum: function (val) {
+      return val.toLocaleString()
+    }
+  },
+
   created: function () {
     axios
       .get("monsters.json")
