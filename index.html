@@ -84,24 +84,24 @@
             <span v-else-if="monster.hp >= 500">つよい！</span>
           </li>
         </ul>
-  
+
         <h3 class="sub-ttl">(HP &lt; 500)モンスター一覧</h3>
         <ul>
           <li v-for="monster in monsters" :key="monster.id" v-if="monster.hp < 500">
             ID: {{ monster.id }} {{ monster.name }} HP: {{ monster.hp }}
           </li>
         </ul>
-  
+
         <h3 class="sub-ttl">モンスターを追加 / 削除</h3>
         <div class="flex add-form">
           <label>名前: <input type="text" v-model="name" /></label>
-          <label>HP: <input type="number" min="1" max="99999" v-model="hp" /></label>
-          <button class="btn btn--add" v-on:click="doAdd">モンスターを追加</button>
+          <label>HP: <input type="number" min="1" max="99999" v-model="hp" @keydown.enter="doAdd" /></label>
+          <button class="btn btn--add" @click="doAdd">モンスターを追加</button>
         </div>
 
         <ul class="monster-list">
           <li class="flex monster-list__item" v-for="(monster, index) in monsters" :key="monster.id" :class="{yabai: monster.hp >= 10000, tyotuyoi: monster.hp >= 1000, tuyoi: monster.hp >= 500}">
-            ID: {{ monster.id }} {{ monster.name }} HP: {{ monster.hp }}
+            ID: {{ monster.id }} {{ monster.name }} HP: {{ monster.hp | localeNum }}
             <span v-if="monster.hp >= 10000">やばい！！！！！</span>
             <span v-else-if="monster.hp >= 1000">超つよい！！！</span>
             <span v-else-if="monster.hp >= 500">つよい！</span>
