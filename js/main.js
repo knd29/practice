@@ -26,8 +26,8 @@ var app = new Vue({
 
   filters: {
     localeNum: function (val) {
-      return val.toLocaleString()
-    }
+      return val.toLocaleString();
+    },
   },
 
   created: function () {
